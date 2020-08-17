@@ -38,7 +38,8 @@ const AddProperty = () => {
       <StyledAddPropertyForm>
         <form onSubmit={handleAddProperty}>
           <StyledLabel htmlFor="title">
-            Title <br />
+            Title
+            <br />
             <StyledInput
               id="title"
               name="title"
@@ -65,7 +66,8 @@ const AddProperty = () => {
           </StyledLabel>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <StyledLabel htmlFor="bedrooms">
-              Bedrooms <br />
+              Bedrooms
+              <br />
               <StyledSmallSelect
                 id="bedrooms"
                 name="bedrooms"
@@ -93,7 +95,8 @@ const AddProperty = () => {
               </StyledSmallSelect>
             </StyledLabel>
             <StyledLabel htmlFor="price">
-              Price <br />
+              Price
+              <br />
               <StyledSelect
                 id="price"
                 name="price"
@@ -129,7 +132,8 @@ const AddProperty = () => {
             </StyledLabel>
 
             <StyledLabel htmlFor="city">
-              City <br />
+              City
+              <br />
               <StyledSelect
                 id="city"
                 name="city"

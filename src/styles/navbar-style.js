@@ -7,7 +7,7 @@ const StyledNavBar = styled.div`
   flex-direction: row;
 
   img {
-    height: 40px;
+    height: 60px;
   }
 
   ul {
