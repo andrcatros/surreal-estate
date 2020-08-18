@@ -1,0 +1,9 @@
+.Alert {
+  position: absolute;
+  margin-left: -275px;
+  left: 50%;
+  background-color: white;
+  width: 550px;
+  height: 30px;
+  font-size: 20px;
+}

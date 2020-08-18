@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledAddPropertyForm = styled.div`
   position: absolute;
   width: 550px;
+  padding-top: 60px;
   margin-left: -275px;
   left: 50%;
 

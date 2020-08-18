@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+import Alert from "./Alert";
 import StyledAddPropertyForm from "../styles/add-property-form-styled";
 import {
   StyledLabel,
@@ -13,20 +16,43 @@ const AddProperty = () => {
     fields: {
       title: "",
       city: "Manchester",
-      type: "",
-      bedrooms: "",
-      bathrooms: "",
-      price: "",
+      type: "Flat",
+      bedrooms: 1,
+      bathrooms: 1,
+      price: 10000,
       email: "",
+    },
+    alert: {
+      message: "",
+      isSuccess: false,
     },
   };
 
   const [fields, setFields] = useState(initialState.fields);
+  const [alert, setAlert] = useState(initialState.alert);
 
   const handleAddProperty = (event) => {
     event.preventDefault();
     // eslint-disable-next-line no-console
-    console.log(fields);
+
+    const postData = async () => {
+      await axios
+        .post("http://localhost:4000/api/v1/PropertyListing", fields)
+        // eslint-disable-next-line no-console
+        .then((res) => {
+          if (res.status === 201) {
+            setAlert({
+              message: "Successfully added new property!",
+              isSuccess: true,
+            });
+          }
+        })
+        .catch((error) => {
+          setAlert({ message: { error }, isSuccess: false });
+        });
+    };
+
+    postData();
   };
 
   const handleFieldChange = (event) => {
@@ -34,7 +60,10 @@ const AddProperty = () => {
   };
 
   return (
-    <div className="AddProperty">
+    <div
+      className="AddProperty"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
       <StyledAddPropertyForm>
         <form onSubmit={handleAddProperty}>
           <StyledLabel htmlFor="title">
@@ -82,16 +111,17 @@ const AddProperty = () => {
               </StyledSmallSelect>
             </StyledLabel>
             <StyledLabel htmlFor="bathrooms">
-              Bathrooms <br />
+              Bathrooms
+              <br />
               <StyledSmallSelect
                 id="bathrooms"
                 name="bathrooms"
                 value={fields.bathrooms}
                 onChange={handleFieldChange}
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3+">3+</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3+</option>
               </StyledSmallSelect>
             </StyledLabel>
             <StyledLabel htmlFor="price">
@@ -103,31 +133,31 @@ const AddProperty = () => {
                 value={fields.price}
                 onChange={handleFieldChange}
               >
-                <option value="10,000">£10,000</option>
-                <option value="20,000">£20,000</option>
-                <option value="30,000">£30,000</option>
-                <option value="40,000">£40,000</option>
-                <option value="50,000">£50,000</option>
-                <option value="60,000">£60,000</option>
-                <option value="70,000">£70,000</option>
-                <option value="80,000">£80,000</option>
-                <option value="90,000">£90,000</option>
-                <option value="100,000">£100,000</option>
-                <option value="110,000">£110,000</option>
-                <option value="120,000">£120,000</option>
-                <option value="130,000">£130,000</option>
-                <option value="140,000">£140,000</option>
-                <option value="150,000">£150,000</option>
-                <option value="160,000">£160,000</option>
-                <option value="170,000">£170,000</option>
-                <option value="180,000">£180,000</option>
-                <option value="190,000">£190,000</option>
-                <option value="200,000">£200,000</option>
-                <option value="210,000">£210,000</option>
-                <option value="220,000">£220,000</option>
-                <option value="230,000">£230,000</option>
-                <option value="240,000">£240,000</option>
-                <option value="250,000">£250,000</option>
+                <option value={10000}>£10,000</option>
+                <option value={20000}>£20,000</option>
+                <option value={30000}>£30,000</option>
+                <option value={40000}>£40,000</option>
+                <option value={50000}>£50,000</option>
+                <option value={60000}>£60,000</option>
+                <option value={70000}>£70,000</option>
+                <option value={80000}>£80,000</option>
+                <option value={90000}>£90,000</option>
+                <option value={100000}>£100,000</option>
+                <option value={110000}>£110,000</option>
+                <option value={120000}>£120,000</option>
+                <option value={130000}>£130,000</option>
+                <option value={140000}>£140,000</option>
+                <option value={150000}>£150,000</option>
+                <option value={160000}>£160,000</option>
+                <option value={170000}>£170,000</option>
+                <option value={180000}>£180,000</option>
+                <option value={190000}>£190,000</option>
+                <option value={200000}>£200,000</option>
+                <option value={210000}>£210,000</option>
+                <option value={220000}>£220,000</option>
+                <option value={230000}>£230,000</option>
+                <option value={240000}>£240,000</option>
+                <option value={250000}>£250,000</option>
               </StyledSelect>
             </StyledLabel>
 
@@ -159,9 +189,12 @@ const AddProperty = () => {
             />
           </StyledLabel>
 
-          <StyledButton type="submit">Add</StyledButton>
+          <StyledButton type="submit" onSubmit={handleAddProperty}>
+            Add
+          </StyledButton>
         </form>
       </StyledAddPropertyForm>
+      {alert.message && <Alert alert={alert} />}
     </div>
   );
 };
