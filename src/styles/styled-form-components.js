@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
   border: none;
   background-color: #c0c0c0;
   font-weight: 600;
+  font-size: 18px;
   border-radius: 5px;
   width: 100px;
   margin: 30px;
@@ -50,7 +51,7 @@ export const StyledSelect = styled.select`
   background-color: white;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 16px;
   width: auto;
 
   option {
@@ -60,7 +61,7 @@ export const StyledSelect = styled.select`
     white-space: pre;
     min-height: 18px;
     font-family: inherit;
-    font-size: 10px;
+    font-size: 16px;
   }
 `;
 
@@ -72,7 +73,7 @@ export const StyledSmallSelect = styled.select`
   background-color: white;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 16px;
   width: 50px;
 
   option {
@@ -83,6 +84,6 @@ export const StyledSmallSelect = styled.select`
     min-height: 20px;
     padding: 0px 2px 1px;
     font-family: inherit;
-    font-size: 10px;
+    font-size: 16px;
   }
 `;

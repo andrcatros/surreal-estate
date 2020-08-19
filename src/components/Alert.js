@@ -1,23 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-import "../styles/Alert.css";
+import StyledAlert from "../styles/styled-alert";
 
-const Alert = ({ alert }) => {
-  if (alert.isSuccess) {
-    return (
-      <div
-        className="Alert"
-        style={{ borderStyle: "solid", borderColor: "green" }}
-      >
-        {alert.message}!
-      </div>
-    );
-  }
+const Alert = ({ message, success }) => {
   return (
-    <div className="Alert" style={{ borderStyle: "solid", borderColor: "red" }}>
-      {alert.message}!
-    </div>
+    <StyledAlert color={success ? "green" : "red"}> {message}!</StyledAlert>
   );
+};
+
+Alert.propTypes = {
+  success: PropTypes.bool,
+  message: PropTypes.string.isRequired,
+};
+
+Alert.defaultProps = {
+  success: false,
 };
 
 export default Alert;

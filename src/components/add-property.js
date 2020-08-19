@@ -1,15 +1,18 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from "react";
 import axios from "axios";
 
 import Alert from "./Alert";
-import StyledAddPropertyForm from "../styles/add-property-form-styled";
+import StyledAddPropertyForm from "../styles/styled-add-property";
+import StyledAlert from "../styles/styled-alert";
+
 import {
   StyledLabel,
   StyledInput,
   StyledSelect,
   StyledSmallSelect,
   StyledButton,
-} from "../styles/form";
+} from "../styles/styled-form-components";
 
 const AddProperty = () => {
   const initialState = {
@@ -24,35 +27,67 @@ const AddProperty = () => {
     },
     alert: {
       message: "",
-      isSuccess: false,
+      success: false,
     },
   };
 
   const [fields, setFields] = useState(initialState.fields);
   const [alert, setAlert] = useState(initialState.alert);
+  const [validationAlert, setValidationAlert] = useState(false);
 
   const handleAddProperty = (event) => {
     event.preventDefault();
-    // eslint-disable-next-line no-console
 
     const postData = async () => {
       await axios
         .post("http://localhost:4000/api/v1/PropertyListing", fields)
-        // eslint-disable-next-line no-console
+
         .then((res) => {
           if (res.status === 201) {
             setAlert({
               message: "Successfully added new property!",
-              isSuccess: true,
+              success: true,
             });
           }
         })
         .catch((error) => {
-          setAlert({ message: { error }, isSuccess: false });
+          setAlert({ message: { error }, success: false });
         });
     };
 
-    postData();
+    const validate = () => {
+      let isTitleValid;
+      let isEmailValid;
+
+      const validateEmail = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+      };
+
+      // eslint-disable-next-line no-unused-expressions
+      fields.title === null || fields.title.trim() === ""
+        ? (isTitleValid = false)
+        : (isTitleValid = true);
+      // eslint-disable-next-line no-unused-expressions
+      !validateEmail(fields.email)
+        ? (isEmailValid = false)
+        : (isEmailValid = true);
+
+      // eslint-disable-next-line no-unused-expressions
+      isTitleValid && isEmailValid
+        ? postData()
+        : !isTitleValid && !isEmailValid
+        ? setValidationAlert("Please add a valid title and email address!")
+        : !isEmailValid
+        ? setValidationAlert("Please add a valid email address!")
+        : setValidationAlert("Please add a valid title!");
+
+      return validationAlert;
+    };
+
+    validate();
+
+    setFields(initialState.fields);
   };
 
   const handleFieldChange = (event) => {
@@ -194,7 +229,10 @@ const AddProperty = () => {
           </StyledButton>
         </form>
       </StyledAddPropertyForm>
-      {alert.message && <Alert alert={alert} />}
+      {alert.message && <Alert {...alert} />}
+      {validationAlert && (
+        <StyledAlert color="red">{validationAlert}</StyledAlert>
+      )}
     </div>
   );
 };

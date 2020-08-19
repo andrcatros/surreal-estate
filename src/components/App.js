@@ -7,7 +7,7 @@ import NavBar from "./navbar";
 import Properties from "./properties";
 import AddProperty from "./add-property";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
@@ -22,6 +22,6 @@ function App() {
       </Switch>
     </div>
   );
-}
+};
 
 export default App;
