@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router-dom";
 
 import GlobalStyle from "../styles/global-style";
 
-import NavBar from "./navbar";
-import Properties from "./properties";
-import AddProperty from "./add-property";
+import NavBar from "./NavBar";
+import Properties from "./Properties";
+import AddProperty from "./AddProperty";
 
 const App = () => {
   return (

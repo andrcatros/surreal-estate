@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PropertyCard component renders PropertyCard component with accurate data when passed props 1`] = `
+<DocumentFragment>
+  <div
+    class="property-card"
+  >
+    <div
+      class="listing-title"
+    >
+      mock listing
+    </div>
+    <div
+      class="listing-type"
+    >
+      flat
+    </div>
+    <div
+      class="listing-bathrooms"
+    />
+    <div
+      class="listing-bedrooms"
+    >
+      3
+    </div>
+    <div
+      class="listing-price"
+    >
+      100000
+    </div>
+    <div
+      class="listing-city"
+    >
+      Manchester
+    </div>
+    <div
+      class="listing-email"
+    >
+      mock.m@email.com
+    </div>
+  </div>
+</DocumentFragment>
+`;

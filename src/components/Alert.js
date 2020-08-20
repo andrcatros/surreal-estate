@@ -5,7 +5,7 @@ import StyledAlert from "../styles/styled-alert";
 
 const Alert = ({ message, success }) => {
   return (
-    <StyledAlert color={success ? "green" : "red"}> {message}!</StyledAlert>
+    <StyledAlert color={success ? "green" : "red"}>{message}!</StyledAlert>
   );
 };
 

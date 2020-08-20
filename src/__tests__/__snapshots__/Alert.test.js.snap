@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Alert component renders error Alert component 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm fsWZhI"
+    color="red"
+  >
+    Error!
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders Alert component renders success Alert component 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm fXvyIw"
+    color="green"
+  >
+    Success!
+  </div>
+</DocumentFragment>
+`;
