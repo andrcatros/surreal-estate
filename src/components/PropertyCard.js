@@ -1,12 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBath, faBed, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import listingPlaceholder from "../styles/listing-placeholder.jpg";
 
 import StyledPropertyCard from "../styles/styled-property-card";
 
-const PropertyCard = ({ listing }) => {
-  const { id, title, type, bathrooms, bedrooms, price, city, email } = listing;
+const PropertyCard = (props) => {
+  const { id, title, type, bathrooms, bedrooms, price, city, email } = props;
   const bathroomTitle = `${bathrooms} ${
     bathrooms === 1 ? "bathroom" : "bathrooms"
   }`;
@@ -44,6 +46,17 @@ const PropertyCard = ({ listing }) => {
       </a>
     </StyledPropertyCard>
   );
+};
+
+PropertyCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  bathrooms: PropTypes.number.isRequired,
+  bedrooms: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 export default PropertyCard;
