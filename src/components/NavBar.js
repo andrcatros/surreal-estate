@@ -7,7 +7,7 @@ import logo from "../styles/logo.png";
 const NavBar = () => {
   return (
     <StyledNavBar>
-      <img src={logo} alt="Logo" />
+      <img src={logo} alt="Purple castle logo" />
       <ul className="navbar-links" style={{ padding: "0px" }}>
         <li className="navbar-links-item">
           <Link to="/">View Properties</Link>

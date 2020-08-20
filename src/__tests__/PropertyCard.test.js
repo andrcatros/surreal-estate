@@ -18,23 +18,26 @@ describe("renders PropertyCard component", () => {
   it("renders PropertyCard component with accurate data when passed props", () => {
     const mockPropertyListing = {
       id: "mockId",
-      title: "mock listing",
+      title: "Mock listing",
       type: "flat",
-      bedrooms: "3",
+      bedrooms: 3,
+      batrhooms: 2,
       price: 100000,
       city: "Manchester",
       email: "mock.m@email.com",
     };
 
-    const { getByText, asFragment } = render(
+    const { getByText, asFragment, getByTestId } = render(
       <PropertyCard listing={mockPropertyListing} />
     );
 
-    expect(getByText("mock listing")).toHaveClass("listing-title");
-    expect(getByText("flat")).toHaveClass("listing-type");
-    expect(getByText("100000")).toHaveClass("listing-price");
-    expect(getByText("Manchester")).toHaveClass("listing-city");
-    expect(getByText("mock.m@email.com")).toHaveClass("listing-email");
+    expect(getByText("Mock listing")).toBeInTheDocument();
+    expect(getByTestId("listing-title-test")).toHaveTextContent(/Mock listing/);
+    expect(getByTestId("listing-type-test")).toHaveTextContent(/flat/i);
+    expect(getByTestId("listing-bedrooms-test")).toBeInTheDocument();
+    expect(getByTestId("listing-bathrooms-test")).toBeInTheDocument();
+    expect(getByTestId("listing-price-test")).toHaveTextContent("100,000");
+    expect(getByTestId("listing-city-test")).toHaveTextContent("Manchester");
 
     expect(asFragment()).toMatchSnapshot();
   });
