@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 const StyledNavBar = styled.div`
   background-color: white;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #d0d0d0;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 1;
+  overflow-x: hidden;
 
   img {
     height: 60px;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
+import SideBar from "./SideBar";
 import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
 
@@ -21,12 +23,26 @@ const Properties = () => {
   return (
     <div
       className="properties"
-      style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+      style={{ display: "flex", flexDirection: "row" }}
     >
-      {listings.map((listing) => (
-        <PropertyCard {...listing} key={listing.id} />
-      ))}
-      {alert.message && <Alert message={alert.message} />}
+      <SideBar />
+      <div
+        className="properties-container"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginTop: "60px",
+          marginLeft: "220px",
+          paddingLeft: "20px",
+          backgroundColor: "#D0D0D0",
+        }}
+      >
+        {listings.map((listing) => (
+          <PropertyCard {...listing} key={listing.id} />
+        ))}
+        {alert.message && <Alert message={alert.message} />}
+      </div>
     </div>
   );
 };

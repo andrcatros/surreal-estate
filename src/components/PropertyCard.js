@@ -41,7 +41,7 @@ const PropertyCard = (props) => {
       <br />
       <a href={`mailto:${email}`} data-testid="listing-email-test">
         <button type="button">
-          <FontAwesomeIcon icon={faEnvelope} /> Email seller
+          <FontAwesomeIcon icon={faEnvelope} /> Email
         </button>
       </a>
     </StyledPropertyCard>
