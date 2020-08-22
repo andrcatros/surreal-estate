@@ -5,7 +5,8 @@ import qs from "qs";
 import StyledSideBar from "../styles/styled-sidebar";
 
 const SideBar = () => {
-  const search = useLocation();
+  const { search } = useLocation();
+
   const buildQueryString = (operation, valueObj) => {
     const query = qs.parse(search, {
       ignoreQueryPrefix: true,
