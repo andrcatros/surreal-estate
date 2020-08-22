@@ -13,14 +13,6 @@ const Properties = () => {
 
   const { search } = useLocation();
 
-  const buildQueryString = (operation, valueObj) => {
-    const query = qs.parse(search, {
-      ignoreQueryPrefix: true,
-    });
-    const newQuery = { ...query, [operation]: JSON.stringify(valueObj) };
-    return qs.stringify(newQuery, { addQueryPrefix: true, encode: false });
-  };
-
   // render initial page
   useEffect(() => {
     async function fetchData() {

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import qs from "qs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import StyledSideBar from "../styles/styled-sidebar";
 
@@ -17,6 +19,14 @@ const SideBar = () => {
   };
   return (
     <StyledSideBar>
+      <form>
+        <label htmlFor="title-search">
+          <input id="title-search" name="title-search"></input>
+          <button>
+            <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>{" "}
+          </button>
+        </label>
+      </form>
       <ul className="sidebar-links" style={{ padding: "0px" }}>
         <h4>Sort by City</h4>
         <li className="sidebar-links-item">

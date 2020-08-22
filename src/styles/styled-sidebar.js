@@ -16,6 +16,10 @@ const StyledSideBar = styled.div`
     padding-left: 15px;
     margin-bottom: 5px;
     font-size: 20px;
+    margin-block-start: 0.5em;
+  }
+  ul {
+    margin-block-start: 0px;
   }
 
   a {
@@ -25,6 +29,25 @@ const StyledSideBar = styled.div`
     line-height: 2.5;
     font-size: 18px;
     font-weight: bold;
+  }
+
+  form {
+    margin-top: 5px;
+    display: flex;
+  }
+
+  input {
+    margin-left: 4px;
+    border: 2px solid #d0d0d0;
+    font-size: 18px;
+    width: 80%;
+  }
+  button {
+    background-color: #774872;
+    color: white;
+    padding: 5px;
+    padding-top: 7px;
+    border-style: none;
   }
 `;
 
