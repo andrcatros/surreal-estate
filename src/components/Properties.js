@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import qs from "qs";
 
 import SideBar from "./SideBar";
 import PropertyCard from "./PropertyCard";
@@ -11,8 +12,16 @@ const Properties = () => {
   const [alert, setAlert] = useState({ message: "" });
 
   const { search } = useLocation();
-  console.log(search);
 
+  const buildQueryString = (operation, valueObj) => {
+    const query = qs.parse(search, {
+      ignoreQueryPrefix: true,
+    });
+    const newQuery = { ...query, [operation]: JSON.stringify(valueObj) };
+    return qs.stringify(newQuery, { addQueryPrefix: true, encode: false });
+  };
+
+  // render initial page
   useEffect(() => {
     async function fetchData() {
       await axios
@@ -23,6 +32,7 @@ const Properties = () => {
     fetchData();
   }, []);
 
+  // re-render page when a search is made
   useEffect(() => {
     async function fetchData() {
       await axios
