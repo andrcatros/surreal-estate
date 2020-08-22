@@ -10,6 +10,9 @@ const Properties = () => {
   const [listings, setListings] = useState([]);
   const [alert, setAlert] = useState({ message: "" });
 
+  const { search } = useLocation();
+  console.log(search);
+
   useEffect(() => {
     async function fetchData() {
       await axios
@@ -19,6 +22,16 @@ const Properties = () => {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get(`http://localhost:4000/api/v1/PropertyListing/${search}`)
+        .then((response) => setListings(response.data))
+        .catch((err) => setAlert({ message: `${err}` }));
+    }
+    fetchData();
+  }, [search]);
 
   return (
     <div
