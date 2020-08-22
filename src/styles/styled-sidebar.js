@@ -18,6 +18,7 @@ const StyledSideBar = styled.div`
     font-size: 20px;
     margin-block-start: 0.5em;
   }
+
   ul {
     margin-block-start: 0px;
   }
@@ -45,8 +46,7 @@ const StyledSideBar = styled.div`
   button {
     background-color: #774872;
     color: white;
-    padding: 5px;
-    padding-top: 7px;
+    padding: 7px 7px 5px 5px;
     border-style: none;
   }
 `;

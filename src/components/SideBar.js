@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import qs from "qs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,16 @@ import StyledSideBar from "../styles/styled-sidebar";
 
 const SideBar = () => {
   const { search } = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
 
+  // handle search input form
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchQuery);
+    setSearchQuery("");
+  };
+
+  // create query string
   const buildQueryString = (operation, valueObj) => {
     const query = qs.parse(search, {
       ignoreQueryPrefix: true,
@@ -17,13 +26,19 @@ const SideBar = () => {
     const newQuery = { ...query, [operation]: JSON.stringify(valueObj) };
     return qs.stringify(newQuery, { addQueryPrefix: true, encode: false });
   };
+
   return (
     <StyledSideBar>
-      <form>
+      <form onSubmit={handleSearch}>
         <label htmlFor="title-search">
-          <input id="title-search" name="title-search"></input>
-          <button>
-            <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>{" "}
+          <input
+            id="title-search"
+            name="title-search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button type="submit">
+            <FontAwesomeIcon icon={faSearch} />
           </button>
         </label>
       </form>
