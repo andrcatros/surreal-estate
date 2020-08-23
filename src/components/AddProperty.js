@@ -4,7 +4,6 @@ import axios from "axios";
 
 import Alert from "./Alert";
 import StyledAddPropertyForm from "../styles/styled-add-property";
-import StyledAlert from "../styles/styled-alert";
 
 import {
   StyledLabel,
@@ -33,12 +32,13 @@ const AddProperty = () => {
 
   const [fields, setFields] = useState(initialState.fields);
   const [alert, setAlert] = useState(initialState.alert);
-  const [validationAlert, setValidationAlert] = useState(false);
 
   const handleAddProperty = (event) => {
     event.preventDefault();
 
     const postData = async () => {
+      setAlert(initialState.alert);
+
       await axios
         .post("http://localhost:4000/api/v1/PropertyListing", fields)
 
@@ -60,7 +60,7 @@ const AddProperty = () => {
       let isEmailValid;
 
       const validateEmail = (email) => {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
       };
 
@@ -77,12 +77,12 @@ const AddProperty = () => {
       isTitleValid && isEmailValid
         ? postData()
         : !isTitleValid && !isEmailValid
-        ? setValidationAlert("Please add a valid title and email address!")
+        ? setAlert({ message: "Please add a valid title and email address!" })
         : !isEmailValid
-        ? setValidationAlert("Please add a valid email address!")
-        : setValidationAlert("Please add a valid title!");
+        ? setAlert({ message: "Please add a valid email address!" })
+        : setAlert({ message: "Please add a valid title!" });
 
-      return validationAlert;
+      return alert;
     };
 
     validate();
@@ -230,9 +230,6 @@ const AddProperty = () => {
         </form>
       </StyledAddPropertyForm>
       {alert.message && <Alert {...alert} />}
-      {validationAlert && (
-        <StyledAlert color="red">{validationAlert}</StyledAlert>
-      )}
     </div>
   );
 };
