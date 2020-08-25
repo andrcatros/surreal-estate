@@ -8,14 +8,16 @@ import listingPlaceholder from "../styles/listing-placeholder.jpg";
 import StyledPropertyCard from "../styles/styled-property-card";
 
 const PropertyCard = (props) => {
-  const { id, title, type, bathrooms, bedrooms, price, city, email } = props;
+  const { _id, title, type, bathrooms, bedrooms, price, city, email } = props;
   const bathroomTitle = `${bathrooms} ${
-    bathrooms === 1 ? "bathroom" : "bathrooms"
+    bathrooms === "1" ? "bathroom" : "bathrooms"
   }`;
-  const bedroomTitle = `${bedrooms} ${bedrooms === 1 ? "bedroom" : "bedrooms"}`;
+  const bedroomTitle = `${bedrooms} ${
+    bedrooms === "1" ? "bedroom" : "bedrooms"
+  }`;
 
   return (
-    <StyledPropertyCard key={id}>
+    <StyledPropertyCard key={_id}>
       <img src={listingPlaceholder} alt="placeholder" />
       <span data-testid="listing-title-test">
         <b>{title}</b>
@@ -37,7 +39,9 @@ const PropertyCard = (props) => {
         <FontAwesomeIcon icon={faBed} /> {bedrooms}
       </span>
       <br />
-      <span data-testid="listing-price-test">£{price.toLocaleString()}</span>
+      <span data-testid="listing-price-test">
+        £{parseInt(price, 10).toLocaleString()}
+      </span>
       <br />
       <a href={`mailto:${email}`} data-testid="listing-email-test">
         <button type="button">
@@ -49,12 +53,12 @@ const PropertyCard = (props) => {
 };
 
 PropertyCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  bathrooms: PropTypes.number.isRequired,
-  bedrooms: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  bathrooms: PropTypes.string.isRequired,
+  bedrooms: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
 };

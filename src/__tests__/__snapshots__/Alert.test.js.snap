@@ -3,7 +3,7 @@
 exports[`renders Alert component renders error Alert component 1`] = `
 <DocumentFragment>
   <div
-    class="sc-AxjAm fsWZhI"
+    class="sc-AxjAm iHdWFy"
     color="red"
   >
     Error!
@@ -14,7 +14,7 @@ exports[`renders Alert component renders error Alert component 1`] = `
 exports[`renders Alert component renders success Alert component 1`] = `
 <DocumentFragment>
   <div
-    class="sc-AxjAm fXvyIw"
+    class="sc-AxjAm hHJyom"
     color="green"
   >
     Success!

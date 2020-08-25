@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import qs from "qs";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
 import StyledSideBar from "../styles/styled-sidebar";
 
 const SideBar = () => {
   const { search } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
-
-  // handle search input form
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(searchQuery);
-    setSearchQuery("");
-  };
+  const history = useHistory();
 
   // create query string
   const buildQueryString = (operation, valueObj) => {
@@ -23,8 +17,34 @@ const SideBar = () => {
       ignoreQueryPrefix: true,
     });
 
-    const newQuery = { ...query, [operation]: JSON.stringify(valueObj) };
+    const newQuery = {
+      ...query,
+      [operation]: JSON.stringify({
+        ...JSON.parse(query[operation] || "{}"),
+        ...valueObj,
+      }),
+    };
     return qs.stringify(newQuery, { addQueryPrefix: true, encode: false });
+  };
+
+  // handle search input form
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchQuery);
+    const newSearchQuery = buildQueryString("query", {
+      title: { $regex: searchQuery },
+    });
+
+    history.push(newSearchQuery);
+
+    setSearchQuery("");
+  };
+
+  // handle resetting search
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    history.push("/");
   };
 
   return (
@@ -64,12 +84,23 @@ const SideBar = () => {
         </li>
         <h4>Sort by</h4>
         <li className="sidebar-links-item">
-          <Link to={buildQueryString("sort", "+price")}>Price Ascending</Link>
+          <Link to={buildQueryString("sort", { price: -1 })}>
+            Price Ascending
+          </Link>
         </li>
         <li className="sidebar-links-item">
-          <Link to={buildQueryString("sort", "-price")}>Price Descending</Link>
+          <Link to={buildQueryString("sort", { price: 1 })}>
+            Price Descending
+          </Link>
         </li>
       </ul>
+      <button
+        type="submit"
+        onClick={handleReset}
+        style={{ width: "100%", fontSize: "16px" }}
+      >
+        Reset search
+      </button>
     </StyledSideBar>
   );
 };

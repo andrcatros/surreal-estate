@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import SideBar from "./SideBar";
@@ -52,7 +53,7 @@ const Properties = () => {
         }}
       >
         {listings.map((listing) => (
-          <PropertyCard {...listing} key={listing.id} />
+          <PropertyCard {...listing} key={listing._id} />
         ))}
         {alert.message && <Alert message={alert.message} />}
       </div>
