@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const StyledSideBar = styled.div`
-  position: relative;
+  position: fixed;
   margin-top: 60px;
-  padding-right: 100px;
   height: 100%;
   background-color: white;
   top: 1;
