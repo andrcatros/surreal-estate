@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Alert from "./Alert";
-import PropertyCard from "./PropertyCard";
 import FavouriteCard from "./FavouriteCard";
 
 const Favourites = ({ userID }) => {
@@ -43,7 +42,7 @@ const Favourites = ({ userID }) => {
     <div
       className="Favourites"
       style={{
-        marginTop: "60px",
+        marginTop: "80px",
       }}
     >
       {favourites.map((favourite) => {

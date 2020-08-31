@@ -1,10 +1,16 @@
 import React from "react";
+import StyledFavouriteCard from "../styles/styled-favourite-card";
 
 const FavouriteCard = ({ _id, title }) => {
   return (
-    <div className="favourite-card" key={_id}>
-      Title: {title}
-    </div>
+    <StyledFavouriteCard key={_id}>
+      <b>Title</b>: {title}
+      <a href="#">
+        <button className="delete-button" type="button">
+          Delete
+        </button>
+      </a>
+    </StyledFavouriteCard>
   );
 };
 
