@@ -14,7 +14,7 @@ import StyledPropertyCard from "../styles/styled-property-card";
 
 const PropertyCard = (props) => {
   const { _id, title, type, bathrooms, bedrooms, price, city, email } = props;
-  const { userID } = props;
+  const { userID, onSave } = props;
   const bathroomTitle = `${bathrooms} ${
     bathrooms === "1" ? "bathroom" : "bathrooms"
   }`;
@@ -55,7 +55,11 @@ const PropertyCard = (props) => {
         </button>
       </a>
       {userID && (
-        <button type="button" className="save-button">
+        <button
+          type="button"
+          className="save-button"
+          onClick={() => onSave(_id)}
+        >
           {" "}
           <FontAwesomeIcon icon={faStar} /> Save{" "}
         </button>

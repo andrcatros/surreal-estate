@@ -34,6 +34,12 @@ const Properties = ({ userID }) => {
     fetchData();
   }, [search]);
 
+  // handle saving properties to favourites
+  const handleSaveProperty = async (propertyID) => {
+    const param = { propertyListing: propertyID, fbUserId: userID };
+    await axios.post("http://localhost:4000/api/v1/Favourite", param);
+  };
+
   return (
     <div
       className="properties"
@@ -53,7 +59,12 @@ const Properties = ({ userID }) => {
         }}
       >
         {listings.map((listing) => (
-          <PropertyCard {...listing} key={listing._id} userID={userID} />
+          <PropertyCard
+            {...listing}
+            key={listing._id}
+            userID={userID}
+            onSave={handleSaveProperty}
+          />
         ))}
         {alert.message && <Alert message={alert.message} />}
       </div>
