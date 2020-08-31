@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
 
-const Properties = () => {
+const Properties = ({ userID }) => {
   const [listings, setListings] = useState([]);
   const [alert, setAlert] = useState({ message: "" });
 
@@ -53,7 +53,7 @@ const Properties = () => {
         }}
       >
         {listings.map((listing) => (
-          <PropertyCard {...listing} key={listing._id} />
+          <PropertyCard {...listing} key={listing._id} userID={userID} />
         ))}
         {alert.message && <Alert message={alert.message} />}
       </div>

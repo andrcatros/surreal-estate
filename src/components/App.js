@@ -24,7 +24,7 @@ const App = () => {
       <NavBar onLogin={handleLogin} onLogout={handleLogout} userID={userID} />
       <Switch>
         <Route exact path="/">
-          <Properties />
+          <Properties userID={userID} />
         </Route>
         <Route exact path="/add-property">
           <AddProperty />

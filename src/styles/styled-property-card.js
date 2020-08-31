@@ -12,7 +12,7 @@ const StyledPropertyCard = styled.div`
   margin: 10px;
   background-color: white;
 
-  button {
+  .email-button {
     height: 40px;
     background-color: #774872;
     color: white;
@@ -21,6 +21,18 @@ const StyledPropertyCard = styled.div`
     width: 100%;
     border-style: none;
   }
+
+  .save-button {
+    height: 40px;
+    background-color: white;
+    color: #774872;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    border-style: solid;
+    border-color: #774872;
+  }
+
   img {
     display: block;
     margin: auto;

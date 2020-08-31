@@ -2,13 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBath, faBed, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBath,
+  faBed,
+  faEnvelope,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import listingPlaceholder from "../styles/listing-placeholder.jpg";
 
 import StyledPropertyCard from "../styles/styled-property-card";
 
 const PropertyCard = (props) => {
   const { _id, title, type, bathrooms, bedrooms, price, city, email } = props;
+  const { userID } = props;
   const bathroomTitle = `${bathrooms} ${
     bathrooms === "1" ? "bathroom" : "bathrooms"
   }`;
@@ -44,10 +50,16 @@ const PropertyCard = (props) => {
       </span>
       <br />
       <a href={`mailto:${email}`} data-testid="listing-email-test">
-        <button type="button">
-          <FontAwesomeIcon icon={faEnvelope} /> Email
+        <button type="button" className="email-button">
+          <FontAwesomeIcon icon={faEnvelope} /> Email{" "}
         </button>
       </a>
+      {userID && (
+        <button type="button" className="save-button">
+          {" "}
+          <FontAwesomeIcon icon={faStar} /> Save{" "}
+        </button>
+      )}
     </StyledPropertyCard>
   );
 };
@@ -61,6 +73,11 @@ PropertyCard.propTypes = {
   price: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  userID: PropTypes.string,
+};
+
+PropertyCard.defaulProps = {
+  userID: "",
 };
 
 export default PropertyCard;
