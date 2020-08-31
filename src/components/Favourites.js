@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Alert from "./Alert";
 import PropertyCard from "./PropertyCard";
+import FavouriteCard from "./FavouriteCard";
 
 const Favourites = ({ userID }) => {
   const [favourites, setFavourites] = useState([]);
@@ -18,6 +19,10 @@ const Favourites = ({ userID }) => {
     fetchData();
   }, []);
 
+  const filteredFavourites = favourites.filter(
+    (fav) => fav.fbUserId === userID
+  );
+
   if (!userID) {
     return (
       <div className="Favourites" style={{ marginTop: "60px" }}>
@@ -26,11 +31,24 @@ const Favourites = ({ userID }) => {
     );
   }
 
+  if (!filteredFavourites.length) {
+    return (
+      <div className="Favourites" style={{ marginTop: "60px" }}>
+        <Alert message="Save some properties to add them to Favourites." />
+      </div>
+    );
+  }
+
   return (
-    <div className="Favourites" style={{ marginTop: "60px" }}>
+    <div
+      className="Favourites"
+      style={{
+        marginTop: "60px",
+      }}
+    >
       {favourites.map((favourite) => {
         const listing = favourite.propertyListing;
-        return <PropertyCard {...listing} />;
+        return <FavouriteCard {...listing} />;
       })}
     </div>
   );
