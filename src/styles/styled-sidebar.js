@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const StyledSideBar = styled.div`
-  position: fixed;
+  position: relative;
   margin-top: 60px;
-  width: 220px;
+  padding-right: 100px;
   height: 100%;
   background-color: white;
-  z-index: 1;
   top: 1;
+  left: 0;
   overflow-x: hidden;
   border-right: 2px solid #d0d0d0;
   border-top: 2px solid #d0d0d0;

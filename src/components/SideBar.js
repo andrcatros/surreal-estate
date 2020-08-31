@@ -97,7 +97,7 @@ const SideBar = () => {
       <button
         type="submit"
         onClick={handleReset}
-        style={{ width: "100%", fontSize: "16px" }}
+        style={{ width: "90%", fontSize: "16px", marginLeft: "10px" }}
       >
         Reset search
       </button>

@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import StyledAlert from "../styles/styled-alert";
 
 const Alert = ({ message, success }) => {
+  if (!message) {
+    return null;
+  }
   return (
     <StyledAlert color={success ? "green" : "red"}>{message}!</StyledAlert>
   );
