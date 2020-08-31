@@ -6,6 +6,7 @@ import GlobalStyle from "../styles/global-style";
 import NavBar from "./NavBar";
 import Properties from "./Properties";
 import AddProperty from "./AddProperty";
+import Favourites from "./Favourites";
 
 const App = () => {
   const [userID, setUserID] = useState("");
@@ -28,6 +29,9 @@ const App = () => {
         </Route>
         <Route exact path="/add-property">
           <AddProperty />
+        </Route>
+        <Route exact path="/favourites">
+          <Favourites userID={userID} />
         </Route>
       </Switch>
     </div>
