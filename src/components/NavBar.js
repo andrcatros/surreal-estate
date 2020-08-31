@@ -5,10 +5,16 @@ import FacebookLogin from "react-facebook-login";
 import StyledNavBar from "../styles/styled-navbar";
 import logo from "../styles/logo.png";
 
-const NavBar = () => {
-  const responseFacebook = (response) => {
-    console.log(response);
-  };
+const NavBar = ({ onLogin, userID, onLogout }) => {
+  const logout = (
+    <button
+      className="my-facebook-button-class"
+      type="button"
+      onClick={onLogout}
+    >
+      Logout
+    </button>
+  );
 
   return (
     <StyledNavBar>
@@ -21,14 +27,17 @@ const NavBar = () => {
           <Link to="/add-property">Add Property</Link>
         </li>
       </ul>
-      <FacebookLogin
-        appId="2933242766961969"
-        fields="name,email,picture"
-        callback={responseFacebook}
-        cssClass="my-facebook-button-class"
-        textButton="Login with Facebook"
-        alt="Login with Facebook"
-      />
+      {userID && logout}
+      {!userID && (
+        <FacebookLogin
+          appId="2933242766961969"
+          fields="name,email,picture"
+          callback={(res) => onLogin(res)}
+          cssClass="my-facebook-button-class"
+          textButton="Login with Facebook"
+          alt="Login with Facebook"
+        />
+      )}
     </StyledNavBar>
   );
 };

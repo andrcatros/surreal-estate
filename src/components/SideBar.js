@@ -30,7 +30,6 @@ const SideBar = () => {
   // handle search input form
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
     const newSearchQuery = buildQueryString("query", {
       title: { $regex: searchQuery },
     });

@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledSideBar = styled.div`
   position: fixed;
   margin-top: 60px;
+  width: 220px;
   height: 100%;
   background-color: white;
   top: 1;
@@ -45,7 +46,7 @@ const StyledSideBar = styled.div`
   button {
     background-color: #774872;
     color: white;
-    padding: 7px 7px 5px 5px;
+    padding: 6px 6px 4px 5px;
     border-style: none;
   }
 `;
