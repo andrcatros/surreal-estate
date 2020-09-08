@@ -16,7 +16,7 @@ const Properties = ({ userID }) => {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get("http://localhost:4000/api/v1/PropertyListing")
+        .get("http://localhost:3000/api/v2/PropertyListing")
         .then((response) => setListings(response.data))
         .catch((err) => setAlert({ message: `${err}` }));
     }
@@ -27,7 +27,7 @@ const Properties = ({ userID }) => {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`http://localhost:4000/api/v1/PropertyListing/${search}`)
+        .get(`http://localhost:3000/api/v2/PropertyListing/${search}`)
         .then((response) => setListings(response.data))
         .catch((err) => setAlert({ message: `${err}` }));
     }
@@ -37,7 +37,9 @@ const Properties = ({ userID }) => {
   // handle saving properties to favourites
   const handleSaveProperty = async (propertyID) => {
     const param = { propertyListing: propertyID, fbUserId: userID };
-    await axios.post("http://localhost:4000/api/v1/Favourite", param);
+    await axios
+      .post("http://localhost:3000/api/v2/Favourite", param)
+      .catch((err) => setAlert({ message: "Favourite could not be saved." }));
   };
 
   return (

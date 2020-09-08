@@ -40,7 +40,7 @@ const AddProperty = () => {
       setAlert(initialState.alert);
 
       await axios
-        .post("http://localhost:4000/api/v1/PropertyListing", fields)
+        .post("http://localhost:3000/api/v2/PropertyListing", fields)
 
         .then((res) => {
           if (res.status === 201) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import Alert from "./Alert";
 import FavouriteCard from "./FavouriteCard";
@@ -10,17 +11,16 @@ const Favourites = ({ userID }) => {
   // render initial page
   useEffect(() => {
     async function fetchData() {
-      await axios
-        .get("http://localhost:4000/api/v1/Favourite?populate=propertyListing")
+      await axios({
+        method: "get",
+        url: "http://localhost:3000/api/v2/Favourite",
+        data: { fbUserId: `${userID}` },
+      })
         .then((response) => setFavourites(response.data))
         .catch((err) => setAlert({ message: `${err}` }));
     }
     fetchData();
-  }, []);
-
-  const filteredFavourites = favourites.filter(
-    (fav) => fav.fbUserId === userID
-  );
+  }, [userID]);
 
   if (!userID) {
     return (
@@ -30,7 +30,7 @@ const Favourites = ({ userID }) => {
     );
   }
 
-  if (!filteredFavourites.length) {
+  if (!favourites.length) {
     return (
       <div className="Favourites" style={{ marginTop: "60px" }}>
         <Alert message="Save some properties to add them to Favourites." />
