@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import StyledFavouriteCard from "../styles/styled-favourite-card";
 
 const FavouriteCard = ({ _id, title }) => {
   return (
     <StyledFavouriteCard key={_id}>
-      <Link to={`/${_id}`}>
+      <Link to={`/favourites/detail?property=${_id}`}>
         <b>Title</b>: {title}
       </Link>
       <Link to={`/${_id}`}>

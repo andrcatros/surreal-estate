@@ -36,7 +36,7 @@ const Properties = ({ userID }) => {
 
   // handle saving properties to favourites
   const handleSaveProperty = async (propertyID) => {
-    const param = { propertyListing: propertyID, fbUserId: userID };
+    const param = { Property: propertyID, fbUserId: userID };
     await axios
       .post("http://localhost:3000/api/v2/Favourite", param)
       .catch((err) => setAlert({ message: "Favourite could not be saved." }));
