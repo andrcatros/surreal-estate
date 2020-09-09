@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 
 import StyledFavouriteCard from "../styles/styled-favourite-card";
 
-const FavouriteCard = ({ _id, title }) => {
+const FavouriteCard = ({ favID, _id, title, handleDelete }) => {
+  const onClick = (e) => {
+    e.preventDefault();
+    handleDelete(favID);
+  };
   return (
-    <StyledFavouriteCard key={_id}>
+    <StyledFavouriteCard>
       <Link to={`/favourites/detail?property=${_id}`}>
         <b>Title</b>: {title}
       </Link>
-      <Link to={`/${_id}`}>
-        <button className="delete-button" type="button">
-          Delete
-        </button>
-      </Link>
+      <button className="delete-button" type="button" onClick={onClick}>
+        Delete
+      </button>
     </StyledFavouriteCard>
   );
 };

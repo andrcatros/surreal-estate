@@ -6,6 +6,7 @@ import FavouriteCard from "./FavouriteCard";
 
 const Favourites = ({ userID }) => {
   const [favourites, setFavourites] = useState([]);
+  const [favouriteToDelete, setFavouriteToDelete] = useState([]);
   const [alert, setAlert] = useState("Please login to access your Favourites");
 
   // render initial page
@@ -20,7 +21,12 @@ const Favourites = ({ userID }) => {
         .catch((err) => setAlert({ message: `${err}` }));
     }
     fetchData();
-  }, [userID]);
+  }, [userID, favouriteToDelete]);
+
+  const handleDelete = async (favID) => {
+    await axios.delete(`http://localhost:3000/api/v2/Favourite/${favID}`);
+    setFavouriteToDelete(favID);
+  };
 
   if (!userID) {
     return (
@@ -47,7 +53,16 @@ const Favourites = ({ userID }) => {
     >
       {favourites.map((favourite) => {
         const listing = favourite.propertyListing;
-        return <FavouriteCard {...listing} />;
+        const favID = favourite._id;
+        return (
+          <FavouriteCard
+            {...listing}
+            favID={favID}
+            key={favID}
+            handleDelete={handleDelete}
+            setFavouriteToDelete={setFavouriteToDelete}
+          />
+        );
       })}
     </div>
   );
