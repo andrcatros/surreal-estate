@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 import StyledFavouriteCard from "../styles/styled-favourite-card";
 
-const FavouriteCard = ({ favID, _id, title, handleDelete }) => {
+const FavouriteCard = (props) => {
+  const { favID, _id, title, handleDelete } = props;
   const onClick = (e) => {
     e.preventDefault();
     handleDelete(favID);
   };
+
   return (
     <StyledFavouriteCard>
       <Link to={`/favourites/detail?property=${_id}`}>

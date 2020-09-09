@@ -56,7 +56,8 @@ const Favourites = ({ userID }) => {
         const favID = favourite._id;
         return (
           <FavouriteCard
-            {...listing}
+            title={listing.title}
+            _id={listing._id}
             favID={favID}
             key={favID}
             handleDelete={handleDelete}
