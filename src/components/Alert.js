@@ -7,6 +7,7 @@ const Alert = ({ message, success }) => {
   if (!message) {
     return null;
   }
+
   return (
     <StyledAlert color={success ? "green" : "red"}>{message}!</StyledAlert>
   );

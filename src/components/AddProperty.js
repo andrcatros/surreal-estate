@@ -23,6 +23,7 @@ const AddProperty = () => {
       bathrooms: 1,
       price: 10000,
       email: "",
+      img: null,
     },
     alert: {
       message: "",
@@ -94,6 +95,10 @@ const AddProperty = () => {
     setFields({ ...fields, [event.target.name]: event.target.value });
   };
 
+  const handleFileUpload = (event) => {
+    setFields({ ...fields, img: event.target.files[0] });
+  };
+
   return (
     <div
       className="AddProperty"
@@ -101,6 +106,7 @@ const AddProperty = () => {
     >
       <StyledAddPropertyForm>
         <form onSubmit={handleAddProperty}>
+          <input type="file" name="img" onChange={handleFileUpload} />
           <StyledLabel htmlFor="title">
             Title
             <br />

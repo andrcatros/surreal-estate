@@ -36,14 +36,6 @@ const Favourites = ({ userID }) => {
     );
   }
 
-  if (!favourites.length) {
-    return (
-      <div className="Favourites" style={{ marginTop: "60px" }}>
-        <Alert message="Save some properties to add them to Favourites." />
-      </div>
-    );
-  }
-
   return (
     <div
       className="Favourites"
