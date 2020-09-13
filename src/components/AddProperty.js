@@ -23,7 +23,7 @@ const AddProperty = () => {
       bathrooms: 1,
       price: 10000,
       email: "",
-      img: null,
+      img: "",
     },
     alert: {
       message: "",
@@ -37,11 +37,13 @@ const AddProperty = () => {
   const handleAddProperty = (event) => {
     event.preventDefault();
 
+    const data = new FormData(event.target);
+
     const postData = async () => {
       setAlert(initialState.alert);
 
       await axios
-        .post("http://localhost:3000/api/v2/PropertyListing", fields)
+        .post("http://localhost:3000/api/v2/PropertyListing", data)
 
         .then((res) => {
           if (res.status === 201) {
@@ -95,10 +97,6 @@ const AddProperty = () => {
     setFields({ ...fields, [event.target.name]: event.target.value });
   };
 
-  const handleFileUpload = (event) => {
-    setFields({ ...fields, img: event.target.files[0] });
-  };
-
   return (
     <div
       className="AddProperty"
@@ -106,7 +104,7 @@ const AddProperty = () => {
     >
       <StyledAddPropertyForm>
         <form onSubmit={handleAddProperty}>
-          <input type="file" name="img" onChange={handleFileUpload} />
+          <input type="file" name="img" />
           <StyledLabel htmlFor="title">
             Title
             <br />

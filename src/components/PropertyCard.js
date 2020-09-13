@@ -13,7 +13,17 @@ import listingPlaceholder from "../styles/listing-placeholder.jpg";
 import StyledPropertyCard from "../styles/styled-property-card";
 
 const PropertyCard = (props) => {
-  const { _id, title, type, bathrooms, bedrooms, price, city, email } = props;
+  const {
+    _id,
+    title,
+    type,
+    bathrooms,
+    bedrooms,
+    price,
+    city,
+    img,
+    email,
+  } = props;
   const { userID, onSave } = props;
   const bathroomTitle = `${bathrooms} ${
     bathrooms === "1" ? "bathroom" : "bathrooms"
@@ -24,7 +34,14 @@ const PropertyCard = (props) => {
 
   return (
     <StyledPropertyCard key={_id}>
-      <img src={listingPlaceholder} alt="placeholder" />
+      {img === "default" ? (
+        <img src={listingPlaceholder} alt="placeholder" />
+      ) : (
+        <img
+          src={`http://localhost:3000/api/v2/Static${img}`}
+          alt="real file"
+        />
+      )}
       <span data-testid="listing-title-test">
         <b>{title}</b>
       </span>
