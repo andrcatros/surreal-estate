@@ -54,7 +54,10 @@ const AddProperty = () => {
           }
         })
         .catch((error) => {
-          setAlert({ message: { error }, success: false });
+          setAlert({
+            message: error.message,
+            success: false,
+          });
         });
     };
 
@@ -104,7 +107,7 @@ const AddProperty = () => {
     >
       <StyledAddPropertyForm>
         <form onSubmit={handleAddProperty}>
-          <input type="file" name="img" />
+          <input type="file" name="img" accept="image/*" />
           <StyledLabel htmlFor="title">
             Title
             <br />
