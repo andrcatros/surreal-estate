@@ -17,7 +17,9 @@ const FavouriteDetail = () => {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`http://localhost:3000/api/v2/PropertyListing/${str.property}`)
+        .get(
+          `https://stormy-depths-48903.herokuapp.com/api/v2/PropertyListing/${str.property}`
+        )
         .then((response) => setCurrentListing(response.data));
     }
     fetchData();

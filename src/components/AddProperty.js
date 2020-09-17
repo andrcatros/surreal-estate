@@ -43,7 +43,10 @@ const AddProperty = () => {
       setAlert(initialState.alert);
 
       await axios
-        .post("http://localhost:3000/api/v2/PropertyListing", data)
+        .post(
+          "https://stormy-depths-48903.herokuapp.com/api/v2/PropertyListing",
+          data
+        )
 
         .then((res) => {
           if (res.status === 201) {

@@ -38,7 +38,7 @@ const PropertyCard = (props) => {
         <img src={listingPlaceholder} alt="placeholder" />
       ) : (
         <img
-          src={`http://localhost:3000/api/v2/Static${img}`}
+          src={`https://stormy-depths-48903.herokuapp.com/api/v2/Static${img}`}
           alt="real file"
         />
       )}

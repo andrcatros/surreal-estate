@@ -14,7 +14,7 @@ const Favourites = ({ userID }) => {
     async function fetchData() {
       await axios({
         method: "get",
-        url: "http://localhost:3000/api/v2/Favourite",
+        url: "https://stormy-depths-48903.herokuapp.com/api/v2/Favourite",
         data: { fbUserId: `${userID}` },
       })
         .then((response) => setFavourites(response.data))
@@ -24,7 +24,9 @@ const Favourites = ({ userID }) => {
   }, [userID, favouriteToDelete]);
 
   const handleDelete = async (favID) => {
-    await axios.delete(`http://localhost:3000/api/v2/Favourite/${favID}`);
+    await axios.delete(
+      `https://stormy-depths-48903.herokuapp.com/api/v2/Favourite/${favID}`
+    );
     setFavouriteToDelete(favID);
   };
 
